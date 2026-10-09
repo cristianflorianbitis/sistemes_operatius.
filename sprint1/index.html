@@ -1,12 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="ca">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sprint 1 · Pinning Packetl</title>
+<title>Sprint 1 · Pinning Packet</title>
 <link rel="stylesheet" href="../css/estils.css">
 </head>
+
 <body>
 
 <header class="hero">
@@ -29,112 +29,152 @@
 </header>
 
 <main class="contenidor">
-  <section class="panell">
+<section class="panell">
 
-    <a id="index-apartats"></a>
+  <a id="index-apartats"></a>
 
-    <table class="taula-apartats">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Apartat</th>
-        </tr>
-      </thead>
+  <table class="taula-apartats">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Apartat</th>
+      </tr>
+    </thead>
 
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td><a href="#apartat1">Pinning de paquets</a></td>
-        </tr>
-      </tbody>
-    </table>
+    <tbody>
+      <tr>
+        <td>1.1</td>
+        <td><a href="#apartat11">Consultar la versió del paquet</a></td>
+      </tr>
+      <tr>
+        <td>1.2</td>
+        <td><a href="#apartat12">Crear el fitxer de configuració</a></td>
+      </tr>
+      <tr>
+        <td>1.3</td>
+        <td><a href="#apartat13">Configurar el pinning</a></td>
+      </tr>
+      <tr>
+        <td>1.4</td>
+        <td><a href="#apartat14">Comprovar els canvis</a></td>
+      </tr>
+      <tr>
+        <td>1.5</td>
+        <td><a href="#apartat15">Instal·lar Docker</a></td>
+      </tr>
+      <tr>
+        <td>1.6</td>
+        <td><a href="#apartat16">Comprovació final</a></td>
+      </tr>
+    </tbody>
+  </table>
 
-    <article class="apartat" id="apartat1">
+  <article class="apartat" id="apartat1">
 
-      <h2>1. Pinning de paquets</h2>
+    <h2>1. Pinning de paquets</h2>
 
-      <p>
-        El pinning de paquets serveix per donar més prioritat a una versió
-        concreta d'un paquet. En aquesta pràctica ho fem amb el paquet Docker.
-      </p>
+    <p>
+      El pinning de paquets serveix per donar més prioritat a una versió
+      concreta d'un paquet. En aquesta pràctica ho fem amb el paquet Docker.
+    </p>
 
-      <h3>1.1. Consultar la versió del paquet</h3>
+    <h3 id="apartat11">1.1. Consultar la versió del paquet</h3>
 
-      <p>
-        Primer executem la comanda
-        <code>apt-cache policy docker.io</code>
-        per veure les versions disponibles i la seua prioritat.
-        Al principi, la versió té una prioritat de 500.
-      </p>
+    <p>
+      Primer executem la comanda
+      <code>apt-cache policy docker.io</code>
+      per veure les versions disponibles i la seua prioritat.
+      Al principi, la versió té una prioritat de 500.
+    </p>
 
-      <img src="baixada1.png"
-           alt="Consulta inicial de la prioritat del paquet Docker">
+    <img src="baixada1.png"
+         alt="Consulta inicial de la prioritat del paquet Docker">
 
-      <h3>1.2. Crear el fitxer de configuració</h3>
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
 
-      <p>
-        Després obrim l'editor Nano amb la comanda
-        <code>sudo nano /etc/apt/preferences.d/dockerio-pin</code>.
-        Aquest fitxer serveix per configurar la prioritat del paquet Docker.
-      </p>
+    <h3 id="apartat12">1.2. Crear el fitxer de configuració</h3>
 
-      <img src="baixada2.png"
-           alt="Creació del fitxer de configuració del pinning">
+    <p>
+      Després obrim l'editor Nano amb la comanda
+      <code>sudo nano /etc/apt/preferences.d/dockerio-pin</code>.
+      Aquest fitxer serveix per configurar la prioritat del paquet Docker.
+    </p>
 
-      <h3>1.3. Configurar el pinning</h3>
+    <img src="baixada2.png"
+         alt="Creació del fitxer de configuració del pinning">
 
-      <p>
-        Dins del fitxer escrivim el nom del paquet, la versió que volem
-        prioritzar i la prioritat 1001. Així indiquem a APT que done
-        preferència a aquesta versió.
-      </p>
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
 
-      <img src="baixada3.png"
-           alt="Configuració de la versió i de la prioritat del paquet">
+    <h3 id="apartat13">1.3. Configurar el pinning</h3>
 
-      <h3>1.4. Comprovar els canvis</h3>
+    <p>
+      Dins del fitxer escrivim el nom del paquet, la versió que volem
+      prioritzar i la prioritat 1001. Així indiquem a APT que done
+      preferència a aquesta versió.
+    </p>
 
-      <p>
-        Tornem a executar la comanda
-        <code>apt-cache policy docker.io</code>
-        per comprovar si s'ha aplicat el canvi. Ara la versió configurada
-        apareix amb una prioritat de 1001, en lloc de 500.
-      </p>
+    <img src="baixada3.png"
+         alt="Configuració de la versió i de la prioritat del paquet">
 
-      <img src="baixada4.png"
-           alt="Comprovació de la nova prioritat de Docker">
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
 
-      <h3>1.5. Instal·lar Docker</h3>
+    <h3 id="apartat14">1.4. Comprovar els canvis</h3>
 
-      <p>
-        Executem la comanda <code>sudo apt install docker.io</code>
-        per instal·lar Docker i les dependències necessàries perquè funcione.
-        El sistema mostra els paquets que s'instal·laran i l'espai que ocuparan.
-      </p>
+    <p>
+      Tornem a executar la comanda
+      <code>apt-cache policy docker.io</code>
+      per comprovar si s'ha aplicat el canvi. Ara la versió configurada
+      apareix amb una prioritat de 1001, en lloc de 500.
+    </p>
 
-      <img src="baixada5.png"
-           alt="Instal·lació del paquet Docker i les seues dependències">
+    <img src="baixada4.png"
+         alt="Comprovació de la nova prioritat de Docker">
 
-      <h3>1.6. Comprovació final</h3>
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
 
-      <p>
-        Finalment, tornem a executar
-        <code>apt-cache policy docker.io</code>
-        per comprovar que Docker està instal·lat i que la versió configurada
-        té una prioritat de 1001. Això indica que el pinning s'ha aplicat
-        correctament.
-      </p>
+    <h3 id="apartat15">1.5. Instal·lar Docker</h3>
 
-      <img src="baixada6.png"
-           alt="Comprovació final de la instal·lació i del pinning">
+    <p>
+      Executem la comanda <code>sudo apt install docker.io</code>
+      per instal·lar Docker i les dependències necessàries perquè funcione.
+      El sistema mostra els paquets que s'instal·laran i l'espai que ocuparan.
+    </p>
 
-      <p class="tornar-index">
-        <a href="#index-apartats">↑ Tornar a l'índex</a>
-      </p>
+    <img src="baixada5.png"
+         alt="Instal·lació del paquet Docker i les seues dependències">
 
-    </article>
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
 
-  </section>
+    <h3 id="apartat16">1.6. Comprovació final</h3>
+
+    <p>
+      Finalment, tornem a executar
+      <code>apt-cache policy docker.io</code>
+      per comprovar que Docker està instal·lat i que la versió configurada
+      té una prioritat de 1001. Això indica que el pinning s'ha aplicat
+      correctament.
+    </p>
+
+    <img src="baixada6.png"
+         alt="Comprovació final de la instal·lació i del pinning">
+
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
+
+  </article>
+
+</section>
 </main>
 
 <footer class="peu">
@@ -142,9 +182,11 @@
   <p class="peu-llicencia">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca"
        target="_blank" rel="license noopener">
+
       <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"
            alt="Llicència Creative Commons Reconeixement-NoComercial-CompartirIgual 4.0"
            width="88" height="31">
+
     </a>
 
     <span>
