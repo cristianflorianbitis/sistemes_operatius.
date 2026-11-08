@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sprint 2 · Gestió de programari i usuaris</title>
+<title>Sprint 2 · Gestió de la informació del sistema i administració</title>
 <link rel="stylesheet" href="../css/estils.css">
 </head>
 <body>
@@ -14,61 +15,405 @@
     <a href="../sprints.html">Índex de sprints</a>
     <a href="https://github.com/" target="_blank" rel="noopener">Codi a GitHub ↗</a>
   </nav>
+
   <div class="hero-titol">
-    <p class="miguetes"><a href="../index.html">Portada</a> / <a href="../sprints.html">Índex de sprints</a> / Sprint 2</p>
-    <h1>Sprint 2 · Gestió de programari i usuaris</h1>
+    <p class="miguetes">
+      <a href="../index.html">Portada</a> /
+      <a href="../sprints.html">Índex de sprints</a> /
+      Sprint 2
+    </p>
+    <h1>Sprint 2 · Gestió de la informació del sistema i administració</h1>
     <p class="subtitol">Índex d'apartats d'aquest sprint</p>
   </div>
 </header>
 
 <main class="contenidor">
-  <section class="panell">
-    <a id="index-apartats"></a>
-    <table class="taula-apartats">
-      <thead>
-        <tr><th>#</th><th>Apartat</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td><a href="#apartat1">Gestors de paquets</a></td></tr>
-        <tr><td>2</td><td><a href="#apartat2">Permisos i propietaris d'arxius</a></td></tr>
-      </tbody>
-    </table>
+<section class="panell">
 
-    <article class="apartat" id="apartat1">
-      <h2>1. Gestors de paquets</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-         tempor incididunt ut labore et dolore magna aliqua. El gestor de
-         paquets permet <strong>instal·lar, actualitzar i eliminar</strong>
-         programari de manera controlada.</p>
-      <ul>
-        <li>Actualitzar la llista de paquets disponibles.</li>
-        <li>Instal·lar un paquet nou.</li>
-        <li>Eliminar un paquet que ja no es fa servir.</li>
-      </ul>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-    <article class="apartat" id="apartat2">
-      <h2>2. Permisos i propietaris d'arxius</h2>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-         ut aliquip ex ea commodo consequat. Cada arxiu té un
-         <strong>propietari, un grup i uns permisos</strong> que en determinen
-         l'accés.</p>
-      <img src="../img/exemple.svg" alt="Exemple de captura de pantalla dels permisos d'un arxiu">
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-         dolore eu fugiat nulla pariatur.</p>
-      <p class="tornar-index"><a href="#index-apartats">↑ Tornar a l'índex</a></p>
-    </article>
-  </section>
+  <a id="index-apartats"></a>
+
+  <!-- Índex dels apartats -->
+  <table class="taula-apartats">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Apartat</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><a href="#apartat1">Sistemes de fitxers i particions</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><a href="#apartat2">Gestió de processos</a></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><a href="#apartat3">Còpies de seguretat i automatització de tasques</a></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><a href="#apartat4">Gestió d'usuaris i grups i permisos</a></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><a href="#apartat5">Quotes de disc</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- Apartat 2: Gestió de processos -->
+  <article class="apartat" id="apartat2">
+
+    <h2>2. Gestió de processos</h2>
+
+    <h3>2.1. Què és un procés?</h3>
+
+    <p>
+      Un <strong>procés</strong> és un programa que s'està executant
+      en l'ordinador. Per exemple, quan obrim un navegador o una
+      terminal, s'inicien diferents processos.
+    </p>
+
+    <p>
+      Cada procés té un número que s'anomena <strong>PID</strong>.
+      Aquest número serveix per identificar-lo i poder controlar-lo.
+    </p>
+
+    <ul>
+      <li><strong>PID:</strong> número que identifica un procés.</li>
+      <li><strong>PPID:</strong> número del procés pare, és a dir,
+      el procés que ha iniciat un altre procés.</li>
+      <li><strong>CPU:</strong> part de l'ordinador que executa les
+      instruccions dels programes.</li>
+      <li><strong>Prioritat:</strong> indica quina importància té
+      un procés per utilitzar la CPU.</li>
+    </ul>
+
+
+    <h3>2.2. Creació dels fitxers de la pràctica</h3>
+
+    <p>
+      Primer vam crear una carpeta anomenada <strong>missio</strong>
+      per guardar tots els fitxers de la pràctica.
+    </p>
+
+    <p>
+      Després vam crear cinc scripts: minador, backup_nocturn,
+      espia, descarrega.sh i sospitosos.sh. Aquests fitxers serveixen
+      per simular diferents processos en funcionament.
+    </p>
+
+    <p>
+      També vam donar permisos d'execució amb l'ordre
+      <strong>chmod +x</strong>. Això permet executar els scripts
+      com si foren programes.
+    </p>
+
+    <p>
+      <strong>Captura 1. Fitxers creats i permisos d'execució.</strong>
+    </p>
+
+    <figure>
+      <img src="../img/captura1.png"
+           alt="Llista dels cinc scripts amb permisos d'execució">
+      <figcaption>
+        Captura 1. Es veuen els cinc fitxers creats i els permisos
+        que permeten executar-los.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.3. Consultar els processos del sistema</h3>
+
+    <p>
+      Una vegada creats els scripts, vam iniciar els processos amb
+      l'ordre <strong>./sospitosos.sh</strong>.
+    </p>
+
+    <p>
+      Per veure els processos que estaven funcionant vam utilitzar
+      diferents ordres:
+    </p>
+
+    <ul>
+      <li><strong>ps:</strong> mostra els processos que s'estan
+      executant.</li>
+      <li><strong>pgrep:</strong> busca processos pel seu nom.</li>
+      <li><strong>ps aux:</strong> mostra més informació dels
+      processos, com el PID, l'usuari i l'ús de CPU.</li>
+      <li><strong>pstree:</strong> mostra els processos en forma
+      d'arbre i permet veure quins processos depenen d'altres.</li>
+    </ul>
+
+    <p>
+      En la captura podem veure els processos minador, espia i
+      backup_nocturn, juntament amb les seues dades.
+    </p>
+
+    <figure>
+      <img src="../img/captura2.png"
+           alt="Ordres pgrep i ps per consultar els processos">
+      <figcaption>
+        Captura 2. Busquem els processos i consultem el seu PID,
+        PPID, estat i ús de CPU.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.4. Comprovar l'ús de la CPU</h3>
+
+    <p>
+      També vam utilitzar l'ordre <strong>top</strong> per veure
+      quins processos utilitzaven més recursos de l'ordinador.
+    </p>
+
+    <p>
+      Amb la tecla <strong>P</strong> podem ordenar els processos
+      segons l'ús de CPU. Amb la tecla <strong>M</strong> podem
+      ordenar-los segons la memòria que utilitzen.
+    </p>
+
+    <p>
+      En la captura es veu que els dos processos minador utilitzen
+      molta CPU. Per això el servidor pot anar més lent.
+    </p>
+
+    <figure>
+      <img src="../img/captura3.png"
+           alt="Monitorització dels processos amb top">
+      <figcaption>
+        Captura 3. Amb top veiem l'ús de CPU dels processos minador.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.5. Arbre de processos</h3>
+
+    <p>
+      Un <strong>arbre de processos</strong> és una manera de veure
+      com estan relacionats els processos. Un procés pare pot
+      iniciar altres processos que s'anomenen fills.
+    </p>
+
+    <p>
+      Amb l'ordre <strong>pstree -p $USER</strong> vam veure
+      l'estructura dels processos de l'usuari. També vam comprovar
+      que alguns processos apareixien penjats de systemd.
+    </p>
+
+    <figure>
+      <img src="../img/captura4.png"
+           alt="Arbre de processos de l'usuari">
+      <figcaption>
+        Captura 4. Es veu l'arbre de processos i la relació entre
+        systemd i alguns dels processos creats.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.6. Executar un procés en segon pla</h3>
+
+    <p>
+      Un procés es pot executar en primer pla o en segon pla:
+    </p>
+
+    <ul>
+      <li><strong>Primer pla:</strong> el procés ocupa la terminal
+      mentre s'està executant.</li>
+      <li><strong>Segon pla:</strong> el procés continua funcionant
+      sense ocupar la terminal i podem continuar utilitzant-la.</li>
+    </ul>
+
+    <p>
+      Per comprovar-ho vam iniciar la descàrrega amb
+      <strong>./descarrega.sh</strong>. Amb <strong>Ctrl + Z</strong>
+      vam posar el procés en pausa.
+    </p>
+
+    <p>
+      Després vam utilitzar <strong>jobs -l</strong> per veure
+      els treballs de la terminal i <strong>bg %1</strong> per
+      continuar la descàrrega en segon pla.
+    </p>
+
+    <figure>
+      <img src="../img/captura5.1.png"
+           alt="Inici de la descàrrega i pausa del procés">
+      <figcaption>
+        Captura 5.1. Iniciem la descàrrega, la posem en pausa amb
+        Ctrl + Z i la reprenem en segon pla amb bg.
+      </figcaption>
+    </figure>
+
+    <p>
+      També vam utilitzar <strong>fg %1</strong> per tornar a posar
+      la descàrrega en primer pla. Després, amb <strong>bg %1</strong>,
+      la vam tornar a enviar al segon pla.
+    </p>
+
+    <figure>
+      <img src="../img/captura5-2.png"
+           alt="Ordres fg i bg per canviar el pla d'execució">
+      <figcaption>
+        Captura 5.2. Utilitzem fg per recuperar el procés en primer
+        pla i bg per tornar-lo al segon pla.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.7. Canviar la prioritat d'un procés</h3>
+
+    <p>
+      La <strong>prioritat</strong> serveix per indicar quins
+      processos tenen més preferència per utilitzar la CPU.
+      En Linux es pot modificar amb l'ordre <strong>renice</strong>.
+    </p>
+
+    <p>
+      Vam provar de canviar la prioritat de la descàrrega sense
+      permisos d'administrador, però no ens va deixar fer-ho.
+      Per això vam repetir l'ordre amb <strong>sudo</strong>.
+    </p>
+
+    <p>
+      En la captura es veu que un dels processos minador té
+      una prioritat NI de -10. Això vol dir que té més preferència
+      per utilitzar la CPU.
+    </p>
+
+    <figure>
+      <img src="../img/captura6.png"
+           alt="Resultat de top després de canviar la prioritat">
+      <figcaption>
+        Captura 6. Amb top comprovem la prioritat dels processos
+        i veiem el valor NI de cada un.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.8. Aturar i continuar processos</h3>
+
+    <p>
+      Linux permet enviar senyals als processos per controlar-los.
+      Vam utilitzar l'ordre <strong>kill</strong> per fer aquestes
+      proves.
+    </p>
+
+    <ul>
+      <li><strong>kill PID:</strong> demana al procés que es tanque.</li>
+      <li><strong>kill -9 PID:</strong> força el tancament del procés.</li>
+      <li><strong>kill -STOP PID:</strong> posa el procés en pausa.</li>
+      <li><strong>kill -CONT PID:</strong> fa que el procés continue.</li>
+    </ul>
+
+    <p>
+      Primer vam intentar tancar el procés espia amb kill, però
+      no es va tancar perquè estava preparat per ignorar aquest
+      senyal. Després vam utilitzar kill -9 i va desaparèixer.
+    </p>
+
+    <p>
+      També vam posar el procés backup_nocturn en pausa amb STOP
+      i el vam reprendre amb CONT. Amb l'ordre <strong>ps</strong>
+      vam comprovar els seus estats: T quan estava parat i S quan
+      estava esperant.
+    </p>
+
+    <figure>
+      <img src="../img/captura7.png"
+           alt="Proves per aturar i continuar processos">
+      <figcaption>
+        Captura 7. Comprovem que espia no es tanca amb kill normal,
+        el tanquem amb kill -9 i posem backup_nocturn en pausa
+        i després el reprenem.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.9. Continuar una descàrrega en tancar la terminal</h3>
+
+    <p>
+      Finalment vam comprovar què passava quan tancàvem la terminal
+      mentre una descàrrega estava funcionant.
+    </p>
+
+    <p>
+      Primer vam iniciar la descàrrega en segon pla, però en tancar
+      la terminal es va interrompre. Després vam utilitzar
+      <strong>nohup</strong>, que permet que un procés continue
+      funcionant encara que tanquem la terminal.
+    </p>
+
+    <p>
+      Vam comprovar el resultat amb el fitxer de progrés i vam veure
+      que la descàrrega havia acabat correctament.
+    </p>
+
+    <p>
+      També vam utilitzar <strong>pstree</strong> per consultar
+      l'estructura dels processos del sistema.
+    </p>
+
+    <figure>
+      <img src="../img/captura8.png"
+           alt="Descàrrega completada i consulta de l'arbre de processos">
+      <figcaption>
+        Captura 8. La descàrrega ubuntu.iso apareix completada
+        i consultem l'arbre de processos amb pstree.
+      </figcaption>
+    </figure>
+
+
+    <h3>2.10. Conclusió</h3>
+
+    <p>
+      En aquesta pràctica hem après a veure els processos que
+      funcionen en Ubuntu, consultar la informació de cada un
+      i controlar-los.
+    </p>
+
+    <p>
+      També hem après a posar processos en segon pla, canviar
+      la seua prioritat, aturar-los i fer que continuen. Finalment,
+      hem comprovat com podem deixar una descàrrega funcionant
+      encara que tanquem la terminal.
+    </p>
+
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
+
+  </article>
+
+</section>
 </main>
+
 
 <footer class="peu">
   <p class="peu-llicencia">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">
-      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png" alt="Llicència Creative Commons Reconeixement-NoComercial-CompartirIgual 4.0" width="88" height="31">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca"
+       target="_blank" rel="license noopener">
+      <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"
+           alt="Llicència Creative Commons"
+           width="88" height="31">
     </a>
-    <span>Contingut sota llicència <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a></span>
+    <span>
+      Contingut sota llicència
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca"
+         target="_blank" rel="license noopener">
+        CC BY-NC-SA 4.0
+      </a>
+    </span>
   </p>
-  <p class="autoria">Autor/a: <strong>Nom Cognom1 Cognom2</strong> · Pràctica 0 · Sistemes Operatius (ISOPJ1)</p>
+
+  <p class="autoria">
+    Autor/a: <strong>Nom Cognom1 Cognom2</strong> ·
+    Pràctica 0 · Sistemes Operatius (ISOPJ1)
+  </p>
 </footer>
 
 </body>
