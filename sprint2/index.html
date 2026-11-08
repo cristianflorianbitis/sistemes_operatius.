@@ -7,6 +7,7 @@
 <title>Sprint 2 · Gestió de la informació del sistema i administració</title>
 <link rel="stylesheet" href="../css/estils.css">
 </head>
+
 <body>
 
 <header class="hero">
@@ -22,10 +23,12 @@
       <a href="../sprints.html">Índex de sprints</a> /
       Sprint 2
     </p>
+
     <h1>Sprint 2 · Gestió de la informació del sistema i administració</h1>
     <p class="subtitol">Índex d'apartats d'aquest sprint</p>
   </div>
 </header>
+
 
 <main class="contenidor">
 <section class="panell">
@@ -40,23 +43,28 @@
         <th>Apartat</th>
       </tr>
     </thead>
+
     <tbody>
       <tr>
         <td>1</td>
         <td><a href="#apartat1">Sistemes de fitxers i particions</a></td>
       </tr>
+
       <tr>
         <td>2</td>
         <td><a href="#apartat2">Gestió de processos</a></td>
       </tr>
+
       <tr>
         <td>3</td>
         <td><a href="#apartat3">Còpies de seguretat i automatització de tasques</a></td>
       </tr>
+
       <tr>
         <td>4</td>
         <td><a href="#apartat4">Gestió d'usuaris i grups i permisos</a></td>
       </tr>
+
       <tr>
         <td>5</td>
         <td><a href="#apartat5">Quotes de disc</a></td>
@@ -65,7 +73,521 @@
   </table>
 
 
-  <!-- Apartat 2: Gestió de processos -->
+  <!-- APARTAT 1 -->
+  <article class="apartat" id="apartat1">
+
+    <h2>1. Sistemes de fitxers i particions</h2>
+
+    <h3>1.1. Estructura física d'un disc</h3>
+
+    <p>
+      L'estructura física d'un disc és la manera com està construït
+      per dins i com guarda les dades. Un disc dur tradicional té
+      diferents parts que permeten llegir i guardar la informació.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Disc:</strong> dispositiu que serveix per guardar
+        informació, com documents, fotos i programes.
+      </li>
+
+      <li>
+        <strong>Plat:</strong> superfície circular on es guarden
+        les dades en un disc dur tradicional.
+      </li>
+
+      <li>
+        <strong>Pista:</strong> cercle que hi ha a la superfície
+        del plat i on es guarden les dades.
+      </li>
+
+      <li>
+        <strong>Sector:</strong> part xicoteta d'una pista on es
+        guarden les dades. Pot ser de 512 bytes o de 4096 bytes.
+      </li>
+
+      <li>
+        <strong>Capçal de lectura:</strong> peça que llig i escriu
+        la informació del disc dur.
+      </li>
+
+      <li>
+        <strong>SSD:</strong> disc que guarda les dades en memòria
+        electrònica i no té peces mòbils com els discos durs
+        tradicionals.
+      </li>
+    </ul>
+
+    <p>
+      En els discos actuals també es parla de blocs, que són
+      unitats que utilitza el sistema de fitxers per organitzar
+      les dades.
+    </p>
+
+
+    <h3>1.2. Estructura lògica d'un disc</h3>
+
+    <p>
+      L'estructura lògica és la manera com el sistema operatiu
+      organitza la informació dins del disc. No explica com està
+      construït físicament, sinó com es guarden i es troben
+      els fitxers.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Partició:</strong> divisió d'un disc en diferents
+        parts. Cada part es pot utilitzar per guardar informació.
+      </li>
+
+      <li>
+        <strong>Sistema de fitxers:</strong> sistema que organitza
+        els fitxers i les carpetes dins d'una partició. En Linux
+        un exemple és ext4.
+      </li>
+
+      <li>
+        <strong>Formatatge:</strong> procés de preparar una partició
+        o un disc perquè puga utilitzar un sistema de fitxers.
+      </li>
+
+      <li>
+        <strong>Muntatge:</strong> acció de connectar un disc o una
+        partició a una carpeta per poder accedir al seu contingut.
+      </li>
+
+      <li>
+        <strong>Directori:</strong> és una carpeta que serveix per
+        ordenar els fitxers.
+      </li>
+
+      <li>
+        <strong>Metadades:</strong> informació sobre els fitxers,
+        com el nom, la mida, la data i la ubicació de les dades.
+      </li>
+    </ul>
+
+    <p>
+      Per exemple, quan connectem un USB a l'ordinador, el sistema
+      el pot muntar perquè puguem obrir les carpetes i els fitxers.
+    </p>
+
+    <p>
+      En aquesta pràctica treballarem amb un disc virtual i amb
+      el sistema de fitxers <strong>ext4</strong>, que és un dels
+      utilitzats en Linux.
+    </p>
+
+
+    <h3>1.3. Pràctica de recuperació de fitxers després d'un formatatge</h3>
+
+    <p>
+      <strong>Objectiu:</strong> comprovar si es poden recuperar
+      fitxers després de formatar un disc. També veurem què passa
+      quan escrivim zeros sobre totes les dades del disc.
+    </p>
+
+    <p>
+      Per fer aquesta pràctica utilitzem un disc virtual, que és
+      un fitxer que fa de disc. Així no toquem el disc real de
+      l'ordinador.
+    </p>
+
+
+    <h4>1.3.1. Preparar la pràctica</h4>
+
+    <p>
+      Primer instal·lem el programa <strong>PhotoRec</strong>,
+      que serveix per recuperar fitxers. Aquest programa ve dins
+      del paquet testdisk.
+    </p>
+
+    <pre><code>sudo apt install testdisk</code></pre>
+
+    <p>
+      Després creem una carpeta anomenada practica i entrem dins.
+    </p>
+
+    <pre><code>mkdir -p ~/practica
+cd ~/practica
+pwd</code></pre>
+
+    <p>
+      A continuació posem dins de la carpeta una foto JPG i un
+      document PDF. Els canviem el nom perquè siguen
+      <strong>foto.jpg</strong> i <strong>apunts.pdf</strong>.
+    </p>
+
+    <p>
+      També creem un fitxer de text amb aquesta ordre:
+    </p>
+
+    <pre><code>echo "El meu secret és que m'encanta la pizza amb pinya" > notes.txt</code></pre>
+
+    <p>
+      Amb l'ordre <strong>ls -l</strong> podem comprovar que
+      tenim els tres fitxers.
+    </p>
+
+
+    <h4>1.3.2. Crear el disc virtual</h4>
+
+    <p>
+      Ara creem un fitxer de 200 MB ple de zeros. Aquest fitxer
+      serà el nostre disc virtual.
+    </p>
+
+    <pre><code>dd if=/dev/zero of=disc.img bs=1M count=200 status=progress</code></pre>
+
+    <p>
+      Aquesta ordre utilitza el programa dd per copiar dades.
+      Les parts més importants són:
+    </p>
+
+    <ul>
+      <li><strong>if=/dev/zero:</strong> utilitza zeros com a dades d'entrada.</li>
+      <li><strong>of=disc.img:</strong> crea el fitxer que farà de disc.</li>
+      <li><strong>bs=1M:</strong> copia blocs d'1 MB.</li>
+      <li><strong>count=200:</strong> copia 200 blocs, és a dir, 200 MB.</li>
+      <li><strong>status=progress:</strong> mostra el progrés.</li>
+    </ul>
+
+    <p>
+      Després comprovem que s'ha creat correctament:
+    </p>
+
+    <pre><code>ls -lh disc.img</code></pre>
+
+
+    <h4>1.3.3. Formatar el disc i copiar els fitxers</h4>
+
+    <p>
+      Primer donem format al disc virtual amb ext4:
+    </p>
+
+    <pre><code>mkfs.ext4 disc.img</code></pre>
+
+    <p>
+      <strong>mkfs</strong> serveix per crear un sistema de fitxers.
+      En aquest cas, ext4 és el sistema que utilitzarem.
+    </p>
+
+    <p>
+      Després creem una carpeta on muntarem el disc i el connectem:
+    </p>
+
+    <pre><code>sudo mkdir -p /mnt/prova
+sudo mount -o loop disc.img /mnt/prova</code></pre>
+
+    <p>
+      Muntar el disc vol dir fer que el seu contingut aparega
+      dins d'una carpeta. L'opció <strong>-o loop</strong> permet
+      muntar un fitxer com si fora un disc.
+    </p>
+
+    <p>
+      Ara copiem els tres fitxers dins del disc:
+    </p>
+
+    <pre><code>sudo cp foto.jpg apunts.pdf notes.txt /mnt/prova/
+ls -l /mnt/prova</code></pre>
+
+    <p>
+      Podem comprovar que hi ha la foto, el PDF, el text i la
+      carpeta lost+found, que crea ext4 automàticament.
+    </p>
+
+
+    <h4>1.3.4. Guardar els hashes originals</h4>
+
+    <p>
+      Un <strong>hash</strong> és com una empremta digital d'un
+      fitxer. És un codi que permet comprovar si dos fitxers
+      són exactament iguals.
+    </p>
+
+    <p>
+      Amb aquesta ordre calculem els hashes dels tres fitxers
+      i els guardem en un document:
+    </p>
+
+    <pre><code>sha256sum foto.jpg apunts.pdf notes.txt > originals.sha
+cat originals.sha</code></pre>
+
+    <p>
+      Guardem aquests resultats perquè després els compararem
+      amb els fitxers recuperats.
+    </p>
+
+    <figure>
+      <img src="img1" alt="Hashes dels fitxers originals">
+      <figcaption>
+        Imatge 1. Es mostren els hashes originals de la foto,
+        el PDF i el fitxer de text.
+      </figcaption>
+    </figure>
+
+    <p>
+      Abans de tornar a formatar el disc, el desmuntem:
+    </p>
+
+    <pre><code>sudo umount /mnt/prova</code></pre>
+
+    <p>
+      Desmuntar vol dir desconnectar el disc de la carpeta
+      abans de fer altres operacions.
+    </p>
+
+
+    <h4>1.3.5. Fer un formatatge d'alt nivell</h4>
+
+    <p>
+      Ara tornem a formatar el disc amb aquesta ordre:
+    </p>
+
+    <pre><code>mkfs.ext4 -E nodiscard disc.img</code></pre>
+
+    <p>
+      Aquesta ordre torna a crear l'estructura del sistema de
+      fitxers ext4, però no esborra expressament tot el contingut
+      de les dades. Quan demane confirmació, escrivim
+      <strong>y</strong> i premem Enter.
+    </p>
+
+    <p>
+      Després muntem el disc per veure què hi ha dins:
+    </p>
+
+    <pre><code>sudo mount -o loop disc.img /mnt/prova
+ls -l /mnt/prova
+sudo umount /mnt/prova</code></pre>
+
+    <p>
+      Ara només apareix la carpeta lost+found. Els fitxers ja
+      no apareixen en la llista, però això no significa que
+      totes les dades s'hagen esborrat del disc.
+    </p>
+
+    <figure>
+      <img src="img2" alt="Contingut del disc després del formatatge">
+      <figcaption>
+        Imatge 2. Després del formatatge, el disc només mostra
+        la carpeta lost+found.
+      </figcaption>
+    </figure>
+
+
+    <h4>1.3.6. Recuperar els fitxers amb PhotoRec</h4>
+
+    <p>
+      Ara utilitzem <strong>PhotoRec</strong> per intentar
+      recuperar els fitxers. Aquest programa busca les dades
+      directament dins del disc, sense necessitar la llista
+      original de fitxers.
+    </p>
+
+    <pre><code>photorec /d recup /cmd disc.img options,fileopt,everything,enable,search</code></pre>
+
+    <p>
+      PhotoRec busca diferents tipus de fitxers i desa els que
+      troba en una carpeta anomenada recup.1.
+    </p>
+
+    <p>
+      Quan acaba, mirem el contingut de la carpeta:
+    </p>
+
+    <pre><code>ls recup.1</code></pre>
+
+    <p>
+      Podem trobar la foto i el PDF, però amb noms diferents
+      dels originals. Això passa perquè els noms originals
+      estaven guardats en la informació del sistema de fitxers
+      que hem formatat.
+    </p>
+
+    <p>
+      Després comprovem si els fitxers recuperats són iguals
+      que els originals:
+    </p>
+
+    <pre><code>sha256sum recup.1/*
+cat originals.sha</code></pre>
+
+    <p>
+      Si els hashes coincideixen, vol dir que els fitxers
+      recuperats són exactament iguals als originals.
+    </p>
+
+    <figure>
+      <img src="img3" alt="Comparació dels hashes originals i recuperats">
+      <figcaption>
+        Imatge 3. Comparem els hashes dels fitxers originals
+        amb els dels fitxers recuperats.
+      </figcaption>
+    </figure>
+
+
+    <h4>1.3.7. Recuperar el text</h4>
+
+    <p>
+      PhotoRec no ha trobat el fitxer notes.txt. Això passa
+      perquè els fitxers de text no tenen una capçalera pròpia
+      que permeta identificar-los fàcilment.
+    </p>
+
+    <p>
+      Per buscar la frase que vam guardar dins del disc,
+      utilitzem aquesta ordre:
+    </p>
+
+    <pre><code>strings -e S disc.img | grep pizza</code></pre>
+
+    <p>
+      <strong>strings</strong> busca text que es pot llegir
+      dins del disc i <strong>grep</strong> mostra només les
+      línies que contenen la paraula pizza.
+    </p>
+
+    <p>
+      Així podem trobar la frase encara que PhotoRec no haja
+      recuperat el fitxer de text.
+    </p>
+
+    <figure>
+      <img src="img4" alt="Frase trobada dins del disc virtual">
+      <figcaption>
+        Imatge 4. Amb strings i grep trobem la frase que havíem
+        guardat dins del disc.
+      </figcaption>
+    </figure>
+
+
+    <h4>1.3.8. Esborrat de baix nivell</h4>
+
+    <p>
+      Finalment, escrivim zeros sobre totes les dades del disc.
+      Això serveix per comprovar si encara podem recuperar
+      els fitxers després d'haver sobreescrit el seu contingut.
+    </p>
+
+    <pre><code>dd if=/dev/zero of=disc.img bs=1M count=200 conv=notrunc status=progress</code></pre>
+
+    <p>
+      L'opció <strong>conv=notrunc</strong> fa que s'escriguen
+      els zeros sobre el fitxer existent sense tallar-ne la mida.
+    </p>
+
+    <p>
+      Després tornem a provar de recuperar els fitxers:
+    </p>
+
+    <pre><code>photorec /d recup_zeros /cmd disc.img
+ls recup_zeros.1</code></pre>
+
+    <p>
+      Aquesta vegada PhotoRec no hauria de trobar els fitxers.
+      També tornem a buscar la paraula pizza:
+    </p>
+
+    <pre><code>strings -e S disc.img | grep pizza</code></pre>
+
+    <p>
+      Ara no hauria d'aparéixer cap resultat perquè les dades
+      anteriors han sigut sobreescrites amb zeros.
+    </p>
+
+    <figure>
+      <img src="img5" alt="Comprovació que ja no es recuperen els fitxers">
+      <figcaption>
+        Imatge 5. Després d'escriure zeros al disc, PhotoRec
+        no troba els fitxers i la cerca de la paraula pizza
+        no mostra cap resultat.
+      </figcaption>
+    </figure>
+
+
+    <h3>1.4. Preguntes de la pràctica</h3>
+
+    <p>
+      <strong>1. Després de la part 3, el disc semblava buit.
+      On eren realment els teus fitxers?</strong>
+    </p>
+
+    <p>
+      Els fitxers encara estaven guardats dins del disc, però
+      s'havia esborrat la informació que indicava on estaven.
+      Per això no apareixien normalment.
+    </p>
+
+    <p>
+      <strong>2. Per què els fitxers recuperats tenen noms
+      diferents dels originals?</strong>
+    </p>
+
+    <p>
+      Perquè els noms originals estaven guardats en l'índex
+      del sistema de fitxers. Com que s'havia formatat, PhotoRec
+      no podia saber els noms i els va posar uns altres.
+    </p>
+
+    <p>
+      <strong>3. Com pots demostrar que la foto recuperada és
+      exactament la mateixa que l'original?</strong>
+    </p>
+
+    <p>
+      Comparant els hashes amb l'ordre sha256sum. Si els codis
+      són iguals, els fitxers també són iguals.
+    </p>
+
+    <p>
+      <strong>4. Per què PhotoRec ha trobat la foto i el PDF,
+      però no el notes.txt? Com l'has trobat igualment?</strong>
+    </p>
+
+    <p>
+      Perquè la foto i el PDF tenen una capçalera que permet
+      identificar-los. El text no té una capçalera pròpia.
+      L'hem trobat utilitzant strings i grep per buscar una
+      paraula de la frase.
+    </p>
+
+    <p>
+      <strong>5. Quin nivell de formatatge has fet a la part 3
+      i quin a la part 5?</strong>
+    </p>
+
+    <p>
+      A la part 3 hem fet un formatatge d'alt nivell, que
+      prepara de nou el sistema de fitxers. A la part 5 hem
+      escrit zeros sobre el contingut del disc per sobreescriure
+      les dades anteriors.
+    </p>
+
+    <p>
+      <strong>6. Vols vendre un USB on tenies fotos personals.
+      Quin formatatge faries abans de vendre'l i per què?</strong>
+    </p>
+
+    <p>
+      No faria només un formatatge normal, perquè encara es
+      podrien recuperar algunes dades. Abans de vendre'l,
+      utilitzaria un mètode d'esborrat segur adequat al tipus
+      de memòria per evitar que altres persones puguen recuperar
+      els fitxers.
+    </p>
+
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
+
+  </article>
+
+
+
+  <!-- APARTAT 2 -->
   <article class="apartat" id="apartat2">
 
     <h2>2. Gestió de processos</h2>
@@ -89,7 +611,7 @@
       el procés que ha iniciat un altre procés.</li>
       <li><strong>CPU:</strong> part de l'ordinador que executa les
       instruccions dels programes.</li>
-      <li><strong>Prioritat:</strong> indica quina importància té
+      <li><strong>Prioritat:</strong> indica quina preferència té
       un procés per utilitzar la CPU.</li>
     </ul>
 
@@ -113,13 +635,8 @@
       com si foren programes.
     </p>
 
-    <p>
-      <strong>Captura 1. Fitxers creats i permisos d'execució.</strong>
-    </p>
-
     <figure>
-      <img src="captura1.png"
-           alt="Llista dels cinc scripts amb permisos d'execució">
+      <img src="captura1" alt="Fitxers creats i permisos d'execució">
       <figcaption>
         Captura 1. Es veuen els cinc fitxers creats i els permisos
         que permeten executar-los.
@@ -155,8 +672,7 @@
     </p>
 
     <figure>
-      <img src="captura2.png"
-           alt="Ordres pgrep i ps per consultar els processos">
+      <img src="captura2" alt="Ordres pgrep i ps per consultar els processos">
       <figcaption>
         Captura 2. Busquem els processos i consultem el seu PID,
         PPID, estat i ús de CPU.
@@ -183,8 +699,7 @@
     </p>
 
     <figure>
-      <img src="captura3.png"
-           alt="Monitorització dels processos amb top">
+      <img src="captura3" alt="Monitorització dels processos amb top">
       <figcaption>
         Captura 3. Amb top veiem l'ús de CPU dels processos minador.
       </figcaption>
@@ -206,8 +721,7 @@
     </p>
 
     <figure>
-      <img src="captura4.png"
-           alt="Arbre de processos de l'usuari">
+      <img src="captura4" alt="Arbre de processos de l'usuari">
       <figcaption>
         Captura 4. Es veu l'arbre de processos i la relació entre
         systemd i alguns dels processos creats.
@@ -241,8 +755,7 @@
     </p>
 
     <figure>
-      <img src="captura5.1.png"
-           alt="Inici de la descàrrega i pausa del procés">
+      <img src="captura5.1" alt="Inici de la descàrrega i pausa del procés">
       <figcaption>
         Captura 5.1. Iniciem la descàrrega, la posem en pausa amb
         Ctrl + Z i la reprenem en segon pla amb bg.
@@ -256,8 +769,7 @@
     </p>
 
     <figure>
-      <img src="captura5-2.png"
-           alt="Ordres fg i bg per canviar el pla d'execució">
+      <img src="captura5.2" alt="Ordres fg i bg per canviar el pla d'execució">
       <figcaption>
         Captura 5.2. Utilitzem fg per recuperar el procés en primer
         pla i bg per tornar-lo al segon pla.
@@ -280,14 +792,13 @@
     </p>
 
     <p>
-      En la captura es veu que un dels processos minador té
-      una prioritat NI de -10. Això vol dir que té més preferència
+      En la captura es veu que un dels processos té una prioritat
+      NI de -10. Un valor més baix significa més preferència
       per utilitzar la CPU.
     </p>
 
     <figure>
-      <img src="captura6.png"
-           alt="Resultat de top després de canviar la prioritat">
+      <img src="captura6" alt="Resultat de top després de canviar la prioritat">
       <figcaption>
         Captura 6. Amb top comprovem la prioritat dels processos
         i veiem el valor NI de cada un.
@@ -324,8 +835,7 @@
     </p>
 
     <figure>
-      <img src="captura7.png"
-           alt="Proves per aturar i continuar processos">
+      <img src="captura7" alt="Proves per aturar i continuar processos">
       <figcaption>
         Captura 7. Comprovem que espia no es tanca amb kill normal,
         el tanquem amb kill -9 i posem backup_nocturn en pausa
@@ -359,8 +869,7 @@
     </p>
 
     <figure>
-      <img src="captura8.png"
-           alt="Descàrrega completada i consulta de l'arbre de processos">
+      <img src="captura8" alt="Descàrrega completada i arbre de processos">
       <figcaption>
         Captura 8. La descàrrega ubuntu.iso apareix completada
         i consultem l'arbre de processos amb pstree.
@@ -373,18 +882,48 @@
 
   </article>
 
+
+  <!-- Apartats pendents -->
+  <article class="apartat" id="apartat3">
+    <h2>3. Còpies de seguretat i automatització de tasques</h2>
+    <p>Contingut pendent.</p>
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
+  </article>
+
+  <article class="apartat" id="apartat4">
+    <h2>4. Gestió d'usuaris i grups i permisos</h2>
+    <p>Contingut pendent.</p>
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
+  </article>
+
+  <article class="apartat" id="apartat5">
+    <h2>5. Quotes de disc</h2>
+    <p>Contingut pendent.</p>
+    <p class="tornar-index">
+      <a href="#index-apartats">↑ Tornar a l'índex</a>
+    </p>
+  </article>
+
 </section>
 </main>
 
 
 <footer class="peu">
+
   <p class="peu-llicencia">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca"
        target="_blank" rel="license noopener">
+
       <img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"
            alt="Llicència Creative Commons"
            width="88" height="31">
+
     </a>
+
     <span>
       Contingut sota llicència
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ca"
@@ -396,8 +935,9 @@
 
   <p class="autoria">
     Autor/a: <strong>Cristian Florian Bitis</strong> ·
-    Pràctica 2 · Sistemes Operatius (ISOPJ1)
+    Pràctica 0 · Sistemes Operatius (ISOPJ1)
   </p>
+
 </footer>
 
 </body>
